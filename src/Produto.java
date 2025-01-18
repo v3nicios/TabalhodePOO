@@ -1,23 +1,22 @@
+
+
 public class Produto {
-    private int id;
+   
     private String nome;
     private String descricao;
     private double valor;
-    private String entrega;
-
-    public Produto(int id, String nome, String descricao, double valor, boolean entrega) {
-        this.id = id;
+    
+    
+    public Produto(String nome, String descricao, double valor) {
+        
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
-        this.entrega = entrega;
+        
 
     }
 
-    public int getID() {
-
-        return id;
-    }
+    
 
     public String getNome() {
 
@@ -32,8 +31,7 @@ public class Produto {
         return valor;
     }
 
-    public String getEntrega() {
-        return entrega;
+     public String toString() {
+        return  "Produto: " + nome + "| Descrição " + descricao + " | Preço: R$ " + valor ;
     }
-
 }
