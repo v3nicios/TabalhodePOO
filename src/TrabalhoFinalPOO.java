@@ -46,7 +46,7 @@ public class TrabalhoFinalPOO {
                     System.out.print("Endereço completo Rua/Numero/Bairro : ");
                     String enderecoCliente = scanner.nextLine();
                     System.out.print("Telefone por favor incluir o DDD ");
-                    int telefoneCliente = scanner.nextInt();
+                    String telefoneCliente = scanner.nextLine();
                     System.out.print("Complemento do endereço ");
                     String complementoCliente = scanner.nextLine();
                     clientes.add(new Cliente(nomeCliente,enderecoCliente,telefoneCliente,complementoCliente));

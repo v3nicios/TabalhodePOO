@@ -2,10 +2,10 @@ public class Cliente {
     
    private String nomecliente;
     private String endereco;
-    private String complemento;
-    private int telefone;
+    private final String complemento;
+    private String telefone;
 
-    public Cliente (String nomecliente, String endereco, int telefone, String complemento ){
+    public Cliente (String nomecliente, String endereco, String telefone, String complemento ){
         this.nomecliente = nomecliente;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -22,12 +22,12 @@ public class Cliente {
      public String getComplemento(){
         return complemento;
      }
-     public int getTelefone(){
+     public String getTelefone(){
         return telefone;
      }
 
       public String toString() {
-        return "CLiente" + nomecliente + "|Endereço" + endereco + "|Complemento" + complemento + "|Telefone/Whatsapp" ;
+        return "CLiente" + nomecliente + "|Endereço" + endereco + "|Complemento" + complemento + "|Telefone/Whatsapp" + telefone;
     }
 
 }
