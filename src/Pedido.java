@@ -3,35 +3,55 @@ import java.util.ArrayList;
 public class Pedido {
     public Cliente nomeCliente;
     ArrayList<Produto> produtos;
-    public String formadepagamento;
-    public boolean entrega;
     public boolean pronta;
+    private String tamanho;
 
-    public Pedido ( Cliente nomeCliente, String formadepagamento, boolean entrega, boolean pronta){
+
+    public Pedido ( Cliente nomeCliente, boolean pronta, String tamanho){
     this.nomeCliente = nomeCliente;
-    this.formadepagamento = formadepagamento;
-    this.entrega = entrega;
+    this.produtos = new ArrayList<>();
     this.pronta = false;
+    this.tamanho = tamanho;
     
         
     }
 
-    void adicionarProduto(Produto produto) {
-        produtos.add(produto);
+    public Cliente getNomePedido(){
+       return nomeCliente;
+    }
+
+
+    public void adicionarProduto(Produto produto) {
+         if (produto != null) {
+            this.produtos.add(produto);
+        }
     }
 
     void marcarPronta() {
         pronta = true;
     }
+    public double ValorTotal() {
+        double total = 0;
+        for (Produto p : produtos) {
+            total += p.getValor();
+        }
+        return total;
+    }
+    
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
 
-    void exibirVenda() {
-        System.out.println("Cliente: " + nomeCliente);
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void exibirPedido() {
+        System.out.println(" Cliente: " + nomeCliente);
         System.out.println("Produtos:");
         for (Produto p : produtos) {
             System.out.println(" - " + p);
         }
-        System.out.println("Para entregar: " + (entrega ? "Sim" : "Não"));
-        System.out.println("Forma de pagamento: " + formadepagamento);
-        System.out.println("Pronta: " + (pronta ? "Sim" : "Não"));
+         System.out.println("A Pizza esta Pronta: " + (pronta ? "Sim" : "Não"));
     }
 }

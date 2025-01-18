@@ -27,7 +27,7 @@ public class Cliente {
      }
 
       public String toString() {
-        return "CLiente" + nomecliente + "|Endereço" + endereco + "|Complemento" + complemento + "|Telefone/Whatsapp" + telefone;
+        return "Cliente: " + nomecliente + " Endereço: " + endereco + " Complemento: " + complemento + "  Telefone/Whatsapp: " + telefone;
     }
 
 }
