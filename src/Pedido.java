@@ -45,6 +45,10 @@ public class Pedido {
     public String getTamanho() {
         return tamanho;
     }
+    public boolean isPronta() {
+        return pronta;
+    }
+    
 
     public void exibirPedido() {
         System.out.println(" Cliente: " + nomeCliente);
