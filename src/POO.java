@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TrabalhoFinalPOO {
+public class POO {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -24,19 +24,22 @@ public class TrabalhoFinalPOO {
                         + "  ##         ##     ##       ##       ######\r\n"
                         + "  ##       ######   ######   ######   ##  ##\r\n"
                 );
-                System.out.println("Menu ");
+                System.out.println("\n ");
                 System.out.println("1. Adicionar sabor de pizza");
-                System.out.println("2. Adicionar Cliente");
-                System.out.println("3. Registrar Pedido");
-                System.out.println("4. Marcar Pedido como Pronto");
-                System.out.println("5. Listar Sabores");
-                System.out.println("6. Listar Clientes");
+                System.out.println("2. Adicionar cliente");
+                System.out.println("3. Registrar pedido");
+                System.out.println("4. Marcar pedido como pronto");
+                System.out.println("5. Listar sabores");
+                System.out.println("6. Listar clientes");
                 System.out.println("7. Pizzas sendo preparadas");
                 System.out.println("8. Pizzas prontas");
+                System.out.println("9. Excluir um sabor de pizza");
+                System.out.println("10. Excluir todos os sabores de pizza");
+                System.out.println("11. Excluir um cliente");
                 System.out.println("0. Sair");
                 System.out.print("Escolha: ");
                 int select = scanner.nextInt();
-                scanner.nextLine();
+
                 System.out.print("\n ");
 
                 if (select == 0) {
@@ -149,19 +152,17 @@ public class TrabalhoFinalPOO {
                         }
 
                         System.out.println("Selecione o Pedido para marcar como pronto:");
-                    
-                        
-                        for (int i = 0; i < pedidos.size(); i++) {
-                             if (pedidos.get(i).isPronta() == false){
-                            System.out.println((i + 1) + ".Pedido " + pedidos.get(i).getNomePedido());
-                            System.out.println("Tamanho: " + pedidos.get(i).getTamanho());
-                            System.out.println("Valor total: R$ " + pedidos.get(i).ValorTotal());
-                            System.out.println("Sabores:");
-                            for (Produto p : pedidos.get(i).getProdutos()) {
-                                System.out.println(" - " + p.getNome() + " (R$ " + p.getValor() + ")");
-                            }}
 
-                            else{
+                        for (int i = 0; i < pedidos.size(); i++) {
+                            if (pedidos.get(i).isPronta() == false) {
+                                System.out.println((i + 1) + ".Pedido " + pedidos.get(i).getNomePedido());
+                                System.out.println("Tamanho: " + pedidos.get(i).getTamanho());
+                                System.out.println("Valor total: R$ " + pedidos.get(i).ValorTotal());
+                                System.out.println("Sabores:");
+                                for (Produto p : pedidos.get(i).getProdutos()) {
+                                    System.out.println(" - " + p.getNome() + " (R$ " + p.getValor() + ")");
+                                }
+                            } else {
                                 System.out.println("Não tem pedidos para marcar como pronto ");
                             }
                             System.out.println();
@@ -178,7 +179,12 @@ public class TrabalhoFinalPOO {
                         break;
 
                     case 5:
-                        System.out.println("Produtos cadastrados:");
+                    if (produtos.isEmpty()) {
+                        System.out.println("Não há sabores cadastrados");
+                        break;
+                    }
+
+                        System.out.println("Sabores cadastrados:");
                         for (Produto p : produtos) {
                             System.out.println("===========================================================");
                             System.out.println(p);
@@ -187,6 +193,11 @@ public class TrabalhoFinalPOO {
                         break;
 
                     case 6:
+                    if (clientes.isEmpty()) {
+                        System.out.println("Não há Clientes cadastrados");
+                        break;
+                    }
+
                         System.out.println("Clientes cadastrados:");
                         for (Cliente c : clientes) {
                             System.out.println("===========================================================");
@@ -217,8 +228,8 @@ public class TrabalhoFinalPOO {
                             System.out.println("Sem pedidos sendo preparados.");
                         }
                         break;
-                        
-                    case 8: 
+
+                    case 8:
                         if (pedidos.isEmpty()) {
                             System.out.println("Nenhum pedido registrado.");
                             break;
@@ -228,9 +239,10 @@ public class TrabalhoFinalPOO {
                         boolean encontrouProntos = false;
 
                         for (Pedido p : pedidos) {
-                            if (p.isPronta()) { 
-                                System.out.println("===========================================================");
+                            if (p.isPronta()) {
+                                System.out.println("=============================================================================");
                                 p.exibirPedido();
+                                System.out.println("=============================================================================");
                                 encontrouProntos = true;
                             }
                         }
@@ -242,6 +254,82 @@ public class TrabalhoFinalPOO {
 
                     default:
                         System.out.println("Opção inválida! Tente novamente.");
+                    case 9:
+                        if (produtos.isEmpty()) {
+                            System.out.println("===========================================================");
+                            System.out.println("Não há produtos cadastrados.");
+                            System.out.println("===========================================================");
+                            break;
+                        }
+
+                        System.out.println("Sabores:");
+                        for (int i = 0; i < produtos.size(); i++) {
+                            System.out.println("===========================================================");
+                            System.out.println((i + 1) + ". " + produtos.get(i).getNome());
+
+                        }
+                        System.out.print("Digite o sabor que sera excluir: ");
+                        int indiceProduto = scanner.nextInt();
+
+                        if (indiceProduto > 0 && indiceProduto <= produtos.size()) {
+                            Produto produtoRemovido = produtos.remove(indiceProduto - 1);
+                            System.out.println("Sabor '" + produtoRemovido.getNome() + "' excluído com sucesso.");
+                        } else {
+                            System.out.println("Número inválido. Nenhum Sabor foi excluído.");
+                        }
+                    case 10: 
+                        if (produtos.isEmpty()) {
+                            System.out.println("Não há sabores cadastrados.");
+                            break;
+                        }
+
+                        System.out.println("Você quer excluir todos os sabores?");
+                        System.out.println("1. Sim");
+                        System.out.println("2. Não");
+                        int confirmar = scanner.nextInt(); 
+                       
+                        if (confirmar == 1) { 
+                            produtos.clear(); 
+                            System.out.println("Todos os sabores foram excluídos.");
+                        } else if (confirmar == 2) {
+                            System.out.println("Nenhum sabor foi excluído.");
+                        } else { 
+                            System.out.println("Opção inválida! Nenhum sabor foi excluído.");
+                        }
+                        break;
+
+                        case 11:
+                        if (clientes.isEmpty()) {
+                            System.out.println("===========================================================");
+                            System.out.println("Não há clientes cadastrados.");
+                            System.out.println("===========================================================");
+                            break;
+                        }
+
+                        System.out.println("Clientes");
+                        for (int i = 0; i < clientes.size(); i++) {
+                            System.out.println("===========================================================");
+                            System.out.println((i + 1) + ". " + clientes.get(i).getNomeCliente());
+
+                        }
+                        System.out.print("Digite o cliente que sera excluir: ");
+                        int indiceClientes = scanner.nextInt();
+
+                        if (indiceClientes > 0 && indiceClientes <= clientes.size()) {
+                            Cliente clienteRemovido = clientes.remove(indiceClientes - 1);
+                            System.out.println("Cliente '" + clienteRemovido.getNomeCliente() + "' excluído com sucesso.");
+                        } else {
+                            System.out.println("Número inválido. Nenhum cliente foi excluído.");
+                        }
+
+
+
+
+
+
+
+
+
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, insira um número.");
@@ -249,6 +337,7 @@ public class TrabalhoFinalPOO {
             } catch (Exception e) {
                 System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
             }
+
         }
 
         scanner.close();
