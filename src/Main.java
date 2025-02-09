@@ -49,8 +49,6 @@ public class Main {
                 // isso esta aqui pq ficar um buffer apos selicionar uma opção
                 scanner.nextLine();
 
-                
-
                 if (select == 0) {
                     System.out.println("Fim do programa  ");
                     break;
@@ -64,7 +62,6 @@ public class Main {
 
                         System.out.print("Nome do Sabor: ");
 
-                       
                         String nomeProduto = scanner.nextLine();
 
                         System.out.print("Descrição do Sabor: ");
